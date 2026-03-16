@@ -28,4 +28,15 @@ export class LogService {
       this.logger.error(`Error saving log: ${String(message)}`);
     }
   }
+
+  async findAll(params: { limit: number; offset: number }): Promise<Log[]> {
+    const { limit, offset } = params;
+    return this.logModel
+      .find({})
+      .sort({ createdAt: -1 })
+      .skip(offset)
+      .limit(limit)
+      .lean()
+      .exec();
+  }
 }

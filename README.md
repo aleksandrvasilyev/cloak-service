@@ -31,6 +31,8 @@ Adding a new filter = create one file, register in `FiltersModule`.
 
 `POST /check`
 
+**Example request / response:**
+
 ```json
 // Request
 {
@@ -44,6 +46,41 @@ Adding a new filter = create one file, register in `FiltersModule`.
  "isBot": true,
  "reasons": ["datacenter_ip"]
 }
+```
+
+**curl example (not a bot):**
+
+```bash
+curl -X POST http://localhost:3000/check \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36" \
+  -H "Accept-Language: en-US,en;q=0.9" \
+  -H "Accept-Encoding: gzip, deflate, br" \
+  -d '{"ip":"8.8.8.8","userAgent":"Mozilla/5.0 (Macintosh)","headers":{"accept-language":"en-US,en;q=0.9","accept-encoding":"gzip, deflate, br"}}'
+```
+
+**curl example (bot):**
+
+```bash
+curl -X POST http://localhost:3000/check \
+  -H "Content-Type: application/json" \
+  -d '{
+    "ip": "87.116.134.44",
+    "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
+    "headers": {
+      "accept-language": "en-US",
+      "accept-encoding": "gzip"
+    }
+  }'
+```
+
+`GET /logs`
+
+- Returns recent detection logs (for debugging/demo).
+- Supports pagination via `limit` and `offset` query params.
+
+```bash
+curl "http://localhost:3000/logs?limit=20&offset=0"
 ```
 
 ## Environment
