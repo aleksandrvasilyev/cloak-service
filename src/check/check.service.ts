@@ -14,7 +14,9 @@ export class CheckService {
   async check(dto: CheckRequestDto): Promise<CheckResponseDto> {
     const startTime = Date.now();
 
-    const results = await Promise.all(this.botFilter.map((filter) => filter.check(dto)));
+    const results = await Promise.all(
+      this.botFilter.map((filter) => Promise.resolve(filter.check(dto))),
+    );
 
     const triggered = results.filter((r) => r.triggered);
     const isBot = triggered.length > 0;
