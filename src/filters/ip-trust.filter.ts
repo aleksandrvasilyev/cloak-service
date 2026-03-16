@@ -53,7 +53,7 @@ export class IpTrustFilter implements BotFilter {
 
       const { vpn, proxy, tor, relay } = data.security;
 
-      if (!vpn || proxy || tor || relay) {
+      if (vpn || proxy || tor || relay) {
         return { triggered: true, reason: 'vpn_or_proxy' };
       }
 
