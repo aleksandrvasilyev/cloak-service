@@ -10,6 +10,7 @@ A microservice that detects bots and suspicious traffic via RESTful API.
 
 ```bash
 cp .env.example .env
+# (optional) set VPN_API_KEY in .env if you want IP Trust checks via vpnapi.io
 docker compose up --build
 ```
 
