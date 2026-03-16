@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { BotFilter, FilterResult } from "./filter.interface";
-import { CheckRequestDto } from "src/check/dto/check-request.dto";
+import { Injectable } from '@nestjs/common';
+import { BotFilter, FilterResult } from './filter.interface';
+import { CheckRequestDto } from 'src/check/dto/check-request.dto';
 
 @Injectable()
 export class HeadersFilter implements BotFilter {
@@ -11,12 +11,12 @@ export class HeadersFilter implements BotFilter {
       Object.entries(headers).map(([key, value]) => [key.toLowerCase(), value]),
     );
 
-    if (!normalized["accept-language"]) {
-      return { triggered: true, reason: "missing_accept_language" };
+    if (!normalized['accept-language']) {
+      return { triggered: true, reason: 'missing_accept_language' };
     }
 
-    if (!normalized["accept-encoding"]) {
-      return { triggered: true, reason: "missing_accept_encoding" };
+    if (!normalized['accept-encoding']) {
+      return { triggered: true, reason: 'missing_accept_encoding' };
     }
 
     return { triggered: false };

@@ -1,8 +1,8 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { CheckRequestDto } from "./dto/check-request.dto";
-import { CheckResponseDto } from "./dto/check-response.dto";
-import { BOT_FILTER, BotFilter } from "src/filters/filter.interface";
-import { LogService } from "src/log/log.service";
+import { Inject, Injectable } from '@nestjs/common';
+import { CheckRequestDto } from './dto/check-request.dto';
+import { CheckResponseDto } from './dto/check-response.dto';
+import { BOT_FILTER, BotFilter } from 'src/filters/filter.interface';
+import { LogService } from 'src/log/log.service';
 
 @Injectable()
 export class CheckService {
@@ -14,9 +14,7 @@ export class CheckService {
   async check(dto: CheckRequestDto): Promise<CheckResponseDto> {
     const startTime = Date.now();
 
-    const results = await Promise.all(
-      this.botFilter.map((filter) => filter.check(dto)),
-    );
+    const results = await Promise.all(this.botFilter.map((filter) => filter.check(dto)));
 
     const triggered = results.filter((r) => r.triggered);
     const isBot = triggered.length > 0;

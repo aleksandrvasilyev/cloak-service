@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
-import { MongooseModule } from "@nestjs/mongoose";
-import { Log, LogSchema } from "./log.schema";
-import { LogService } from "./log.service";
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Log, LogSchema } from './log.schema';
+import { LogService } from './log.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Log.name, schema: LogSchema }])],

@@ -1,6 +1,6 @@
-import { CheckRequestDto } from "src/check/dto/check-request.dto";
-import { BotFilter, FilterResult } from "./filter.interface";
-import { Injectable } from "@nestjs/common";
+import { CheckRequestDto } from 'src/check/dto/check-request.dto';
+import { BotFilter, FilterResult } from './filter.interface';
+import { Injectable } from '@nestjs/common';
 
 const HEADLESS_PATTERNS = [
   /headlesschrome/i,
@@ -39,15 +39,15 @@ export class UserAgentFilter implements BotFilter {
     const ua = request.userAgent?.trim();
 
     if (!ua) {
-      return { triggered: true, reason: "empty_user_agent" };
+      return { triggered: true, reason: 'empty_user_agent' };
     }
 
     if (HEADLESS_PATTERNS.some((pattern) => pattern.test(ua))) {
-      return { triggered: true, reason: "headless_browser" };
+      return { triggered: true, reason: 'headless_browser' };
     }
 
     if (BOT_PATTERNS.some((pattern) => pattern.test(ua))) {
-      return { triggered: true, reason: "known_bot" };
+      return { triggered: true, reason: 'known_bot' };
     }
 
     return { triggered: false };
