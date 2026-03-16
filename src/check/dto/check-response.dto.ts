@@ -5,5 +5,5 @@ export class CheckResponseDto {
   isBot: boolean;
 
   @ApiProperty({ example: ["datacenter_ip", "headless_browser"] })
-  reason: string[];
+  reasons: string[];
 }
