@@ -6,7 +6,7 @@ export interface FilterResult {
 }
 
 export interface BotFilter {
-  check(request: CheckRequestDto): Promise<FilterResult>;
+  check(request: CheckRequestDto): Promise<FilterResult> | FilterResult;
 }
 
 export const BOT_FILTER = 'BOT_FILTER';

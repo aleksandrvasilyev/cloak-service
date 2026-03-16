@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   console.log(process.env.PORT);
 
@@ -27,4 +27,4 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 }
 
-bootstrap();
+void bootstrap();

@@ -20,8 +20,12 @@ export class LogService {
   async save(dto: CreateLogDto): Promise<void> {
     try {
       await this.logModel.create(dto);
-    } catch (error) {
-      this.logger.error(`Error saving log: ${error.message}`);
+    } catch (error: unknown) {
+      const message =
+        typeof error === 'object' && error !== null && 'message' in error
+          ? (error as { message: unknown }).message
+          : error;
+      this.logger.error(`Error saving log: ${String(message)}`);
     }
   }
 }

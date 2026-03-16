@@ -4,7 +4,7 @@ import { CheckRequestDto } from 'src/check/dto/check-request.dto';
 
 @Injectable()
 export class HeadersFilter implements BotFilter {
-  async check(request: CheckRequestDto): Promise<FilterResult> {
+  check(request: CheckRequestDto): FilterResult {
     const headers = request.headers ?? {};
 
     const normalized = Object.fromEntries(

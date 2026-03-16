@@ -35,7 +35,7 @@ const BOT_PATTERNS = [
 
 @Injectable()
 export class UserAgentFilter implements BotFilter {
-  async check(request: CheckRequestDto): Promise<FilterResult> {
+  check(request: CheckRequestDto): FilterResult {
     const ua = request.userAgent?.trim();
 
     if (!ua) {

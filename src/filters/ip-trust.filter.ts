@@ -63,8 +63,12 @@ export class IpTrustFilter implements BotFilter {
       }
 
       return { triggered: false };
-    } catch (error) {
-      this.logger.error(`Error checking IP trust: ${error.message}`);
+    } catch (error: unknown) {
+      const message =
+        typeof error === 'object' && error !== null && 'message' in error
+          ? (error as { message: unknown }).message
+          : error;
+      this.logger.error(`Error checking IP trust: ${String(message)}`);
       return { triggered: false };
     }
   }
