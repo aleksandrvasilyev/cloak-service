@@ -2,6 +2,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+ENV HUSKY=0
+
 COPY package*.json ./
 RUN npm ci
 
@@ -14,6 +16,8 @@ RUN npm run build
 FROM node:20-alpine AS production
 
 WORKDIR /app
+
+ENV HUSKY=0
 
 COPY package*.json ./
 RUN npm ci --omit=dev
