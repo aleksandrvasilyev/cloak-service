@@ -4,7 +4,7 @@ import { IsIP, IsObject, IsOptional, IsString } from "class-validator";
 export class CheckRequestDto {
   @ApiProperty({ example: "123.427.462.49" })
   @IsIP()
-  is: string;
+  ip: string;
 
   @ApiProperty({
     example:
